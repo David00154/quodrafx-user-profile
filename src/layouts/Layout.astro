@@ -1,0 +1,119 @@
+---
+import Header from "../components/Header.astro";
+import SideBar from "../components/SideBar.astro";
+interface Props {
+  title: string;
+}
+import { balance, name } from "../data.json";
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html
+  lang="en"
+  data-layout="semibox"
+  data-layout-style="default"
+  data-sidebar="dark"
+  data-topbar="dark"
+  data-sidebar-size="lg"
+  data-sidebar-image="none"
+  data-preloader="disable"
+  data-layout-mode="dark"
+  data-layout-width="fluid"
+  data-layout-position="fixed"
+  data-sidebar-visibility="show"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link
+      href="/assets/libs/jsvectormap/css/jsvectormap.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!--Swiper slider css-->
+    <link
+      href="/assets/libs/swiper/swiper-bundle.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="/assets/css/bootstrap.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Icons Css -->
+    <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    <!-- custom Css-->
+    <link href="/assets/css/custom.min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="layout-wrapper">
+      <!-- @include('includes/header') -->
+      <Header {name} {balance} />
+      <!-- removeNotificationModal -->
+      <!-- {{-- @!component('components/removeNotificationModal') --}} -->
+      <!-- {{-- App mennu --}} -->
+      <!-- @include('includes/app-menu') -->
+      <SideBar />
+      <!-- {{-- Vertical overlay --}} -->
+      <div class="vertical-overlay"></div>
+      <!-- {{-- Start right Content here --}} -->
+      <div class="main-content">
+        <div class="page-content">
+          <!-- @!section('body') -->
+          <slot />
+          <!-- @include('includes/footer') -->
+        </div>
+      </div>
+
+      <!--preloader-->
+      <!-- <div id="preloader">
+        <div id="status">
+          <div class="spinner-border text-primary avatar-sm" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </body>
+  <script is:inline src="/assets/js/layout.js"></script>
+
+  <script is:inline src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"
+  ></script>
+  <script is:inline src="/assets/libs/simplebar/simplebar.min.js"></script>
+  <script is:inline src="/assets/libs/node-waves/waves.min.js"></script>
+  <script is:inline src="/assets/libs/feather-icons/feather.min.js"></script>
+  <script is:inline src="/assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
+  <script is:inline src="/assets/js/plugins.js"></script>
+
+  <!-- apexcharts -->
+  <script is:inline src="/assets/libs/apexcharts/apexcharts.min.js"></script>
+
+  <!-- Vector map-->
+  <script is:inline src="/assets/libs/jsvectormap/js/jsvectormap.min.js"
+  ></script>
+  <script is:inline src="/assets/libs/jsvectormap/maps/world-merc.js"></script>
+
+  <!--Swiper slider js-->
+  <script is:inline src="/assets/libs/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Dashboard init -->
+  <script is:inline src="/assets/js/pages/dashboard-ecommerce.init.js"></script>
+
+  <!-- apexcharts -->
+  <script is:inline src="/assets/libs/apexcharts/apexcharts.min.js"></script>
+
+  <!-- piecharts init -->
+  <script is:inline src="/assets/js/pages/apexcharts-pie.init.js"></script>
+
+  <!-- App js -->
+  <script is:inline src="/assets/js/app.js"></script>
+</html>
